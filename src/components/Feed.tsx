@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 const Feed = () => {
@@ -16,7 +17,8 @@ const Feed = () => {
   if (data) {
     countries = data.map((country: { [key: string]: any }) => {
       return (
-        <div
+        <Link
+          to="/:id"
           key={uuidv4()}
           className="bg-white cursor-pointer shadow-[0_0_7px_2px_rgba(0,0,0,0.06)]"
         >
@@ -31,7 +33,10 @@ const Feed = () => {
             <p className="h2 text-black">{country.name.common}</p>
             <div className="flex flex-col gap-2 mt-4">
               <p className="h4 text-black">
-                <b>Population:</b> {country.population}
+                <b>Population:</b>{" "}
+                {country.population
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </p>
               <p className="h4 text-black">
                 <b>Region:</b> {country.region}
@@ -41,7 +46,7 @@ const Feed = () => {
               </p>
             </div>
           </div>
-        </div>
+        </Link>
       );
     });
   }
@@ -49,7 +54,7 @@ const Feed = () => {
   return (
     <>
       {isLoading ? (
-        <div>Loading...</div>
+        <section className="px-20 py-12">Loading...</section>
       ) : (
         <section className="px-20 py-12 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-[72px] gap-y-[72px]">
           {countries}
