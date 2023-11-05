@@ -4,7 +4,7 @@ import Feed from "./components/Feed";
 
 const App = () => {
   return (
-    <main>
+    <main className="h-screen bg-light">
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Feed />} />
