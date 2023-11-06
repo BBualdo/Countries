@@ -36,7 +36,7 @@ const App = () => {
           />
           <Route
             path="/:id"
-            element={<CountryDetails isDarkMode={isDarkMode} />}
+            element={<CountryDetails isDarkMode={isDarkMode} data={data} />}
           />
         </Route>
       </Routes>
