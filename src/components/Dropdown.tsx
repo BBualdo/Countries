@@ -1,8 +1,13 @@
 import { useState } from "react";
 
-const Dropdown = () => {
+const Dropdown = ({
+  selectedFilter,
+  setSelectedFilter,
+}: {
+  selectedFilter: string;
+  setSelectedFilter: (filter: string) => void;
+}) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState<string>();
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
@@ -46,7 +51,7 @@ const Dropdown = () => {
           </button>
           <button
             className={selectedFilter === "America" ? "font-bold" : ""}
-            onClick={() => selectFilter("America")}
+            onClick={() => selectFilter("Americas")}
           >
             America
           </button>

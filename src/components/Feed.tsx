@@ -2,9 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Filters from "./Filters";
+import { useState, useEffect } from "react";
 
 const Feed = () => {
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["countries"],
     queryFn: async () => {
       const response = await fetch("https://restcountries.com/v3.1/all");
@@ -13,12 +14,25 @@ const Feed = () => {
     },
   });
 
+  const [selectedFilter, setSelectedFilter] = useState<string>("");
+  const [filteredCountries, setFilteredCountries] = useState([]);
+
+  useEffect(() => {
+    if (selectedFilter) {
+      const filtered = data.filter(
+        (country: { [key: string]: any }) => country.region === selectedFilter
+      );
+      setFilteredCountries(filtered);
+    } else {
+      setFilteredCountries(data);
+    }
+  }, [selectedFilter, data]);
+
   let countries = [];
 
-  console.log(data);
-
   if (data) {
-    countries = data.map((country: { [key: string]: any }) => {
+    const countiesToDisplay = selectedFilter ? filteredCountries : data;
+    countries = countiesToDisplay.map((country: { [key: string]: any }) => {
       return (
         <Link
           to={`/${country.cca3}`}
@@ -60,7 +74,10 @@ const Feed = () => {
         <section className="px-20 py-12">Loading...</section>
       ) : (
         <>
-          <Filters />
+          <Filters
+            selectedFilter={selectedFilter}
+            setSelectedFilter={setSelectedFilter}
+          />
           <section className="px-20 py-12 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-[72px] gap-y-[72px]">
             {countries}
           </section>

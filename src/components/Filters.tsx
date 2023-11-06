@@ -1,6 +1,12 @@
 import Dropdown from "./Dropdown";
 
-const Filters = () => {
+const Filters = ({
+  selectedFilter,
+  setSelectedFilter,
+}: {
+  selectedFilter: string;
+  setSelectedFilter: (filter: string) => void;
+}) => {
   return (
     <div className="flex items-center justify-between px-20 pt-12">
       <div className="relative flex items-center">
@@ -28,7 +34,10 @@ const Filters = () => {
         />
       </div>
       <div>
-        <Dropdown />
+        <Dropdown
+          selectedFilter={selectedFilter}
+          setSelectedFilter={setSelectedFilter}
+        />
       </div>
     </div>
   );
