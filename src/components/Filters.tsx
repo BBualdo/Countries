@@ -56,6 +56,7 @@ const Filters = ({
           placeholder="Search for a country..."
           value={searchTerm}
           onChange={handleChange}
+          autoComplete="off"
         />
       </div>
       <div>
