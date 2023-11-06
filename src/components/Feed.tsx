@@ -80,7 +80,7 @@ const Feed = ({
   return (
     <>
       {isLoading ? (
-        <section className="px-20 py-12">Loading...</section>
+        <section className="px-6 sm:px-20 py-12">Loading...</section>
       ) : (
         <>
           <Filters
@@ -91,13 +91,13 @@ const Feed = ({
             setFilteredByName={setFilteredByName}
           />
           {filteredByName?.length == 0 ? (
-            <div className="px-20 py-12 flex justify-center">
+            <div className="px-6 sm:px-20 py-12 flex justify-center">
               <h1 className={`${isDarkMode ? "text-white" : "text-black"} h1`}>
                 No countries found.
               </h1>
             </div>
           ) : (
-            <section className="px-20 py-12 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-[72px] gap-y-[72px]">
+            <section className="px-6 sm:px-20 py-12 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-[72px] gap-y-[72px]">
               {countries}
             </section>
           )}

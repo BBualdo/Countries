@@ -50,7 +50,7 @@ const Dropdown = ({
         <div
           className={`absolute flex flex-col items-start ${
             isDarkMode ? "bg-dark text-white" : "bg-white text-black"
-          } shadow-[0_2px_9px_0_rgba(0,0,0,0.06)] w-full top-16 gap-2 px-6 py-4 rounded-[5px]`}
+          } shadow-[0_2px_9px_0_rgba(0,0,0,0.06)] max-sm:w-[200px] sm:w-full top-16 gap-2 px-6 py-4 rounded-[5px]`}
         >
           <button
             className={selectedFilter === "Africa" ? "font-bold" : ""}
@@ -62,7 +62,7 @@ const Dropdown = ({
             className={selectedFilter === "America" ? "font-bold" : ""}
             onClick={() => selectFilter("Americas")}
           >
-            America
+            Americas
           </button>
           <button
             className={selectedFilter === "Asia" ? "font-bold" : ""}

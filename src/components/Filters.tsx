@@ -29,7 +29,7 @@ const Filters = ({
   };
 
   return (
-    <div className="flex items-center justify-between px-20 pt-12">
+    <div className="flex max-sm:flex-col max-sm:gap-6 sm:items-center justify-between px-6 sm:px-20 pt-12">
       <div className="relative flex items-center">
         <svg
           className="absolute left-8"

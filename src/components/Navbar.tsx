@@ -7,12 +7,12 @@ const Navbar = ({
 }) => {
   return (
     <nav
-      className={`flex items-center justify-between px-20 py-8 shadow-[0_2px_4px_0_rgba(0,0,0,0.06)] ${
+      className={`flex items-center justify-between px-4 sm:px-20 py-8 shadow-[0_2px_4px_0_rgba(0,0,0,0.06)] ${
         isDarkMode ? "bg-dark" : "bg-white"
       }`}
     >
       <h1
-        className={`h1 ${
+        className={`h2 sm:h1 ${
           isDarkMode ? "text-white" : "text-black"
         } cursor-pointer`}
       >
