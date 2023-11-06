@@ -1,14 +1,33 @@
+import { useState } from "react";
 import Dropdown from "./Dropdown";
 
 const Filters = ({
   selectedFilter,
   setSelectedFilter,
   isDarkMode,
+  data,
+  setFilteredByName,
 }: {
   selectedFilter: string;
   setSelectedFilter: (filter: string) => void;
   isDarkMode: boolean;
+  data: any;
+  setFilteredByName: (countries: []) => void;
 }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const searchValue = event.target.value;
+    setSearchTerm(searchValue);
+    setSelectedFilter("");
+
+    const filteredCountries = data.filter((country: { [key: string]: any }) =>
+      country.name.common.toLowerCase().includes(searchValue.toLowerCase())
+    );
+
+    setFilteredByName(filteredCountries);
+  };
+
   return (
     <div className="flex items-center justify-between px-20 pt-12">
       <div className="relative flex items-center">
@@ -35,6 +54,8 @@ const Filters = ({
           name="search-country"
           type="text"
           placeholder="Search for a country..."
+          value={searchTerm}
+          onChange={handleChange}
         />
       </div>
       <div>

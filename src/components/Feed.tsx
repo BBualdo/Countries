@@ -1,21 +1,21 @@
-import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Filters from "./Filters";
 import { useState, useEffect } from "react";
 
-const Feed = ({ isDarkMode }: { isDarkMode: boolean }) => {
-  const { data, isLoading } = useQuery({
-    queryKey: ["countries"],
-    queryFn: async () => {
-      const response = await fetch("https://restcountries.com/v3.1/all");
-      const data = await response.json();
-      return data;
-    },
-  });
-
+const Feed = ({
+  isDarkMode,
+  data,
+  isLoading,
+}: {
+  isDarkMode: boolean;
+  data: any;
+  isLoading: boolean;
+}) => {
   const [selectedFilter, setSelectedFilter] = useState<string>("");
   const [filteredCountries, setFilteredCountries] = useState([]);
+
+  const [filteredByName, setFilteredByName] = useState<[]>();
 
   useEffect(() => {
     if (selectedFilter) {
@@ -31,7 +31,12 @@ const Feed = ({ isDarkMode }: { isDarkMode: boolean }) => {
   let countries = [];
 
   if (data) {
-    const countiesToDisplay = selectedFilter ? filteredCountries : data;
+    const countiesToDisplay = selectedFilter
+      ? filteredCountries
+      : filteredByName
+      ? filteredByName
+      : data;
+
     countries = countiesToDisplay.map((country: { [key: string]: any }) => {
       return (
         <Link
@@ -82,10 +87,20 @@ const Feed = ({ isDarkMode }: { isDarkMode: boolean }) => {
             selectedFilter={selectedFilter}
             setSelectedFilter={setSelectedFilter}
             isDarkMode={isDarkMode}
+            data={data}
+            setFilteredByName={setFilteredByName}
           />
-          <section className="px-20 py-12 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-[72px] gap-y-[72px]">
-            {countries}
-          </section>
+          {filteredByName?.length == 0 ? (
+            <div className="px-20 py-12 flex justify-center">
+              <h1 className={`${isDarkMode ? "text-white" : "text-black"} h1`}>
+                No countries found.
+              </h1>
+            </div>
+          ) : (
+            <section className="px-20 py-12 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-[72px] gap-y-[72px]">
+              {countries}
+            </section>
+          )}
         </>
       )}
     </>
