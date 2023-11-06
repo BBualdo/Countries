@@ -32,8 +32,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Solution](https://www.frontendmentor.io/solutions/reactquery-typescript-tailwindcss-kinda-lazy-countries-s5XQggQ2Sr)
+- Live Site URL: [LiveSite](https://bbualdo-countries.vercel.app)
 
 ### Built with
 
@@ -44,5 +44,5 @@ Users should be able to:
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Website - [BBualdo](https://bbualdo-portfolio.netlify.app)
+- Frontend Mentor - [@bbualdo](https://www.frontendmentor.io/profile/bbualdo)
