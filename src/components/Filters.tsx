@@ -3,9 +3,11 @@ import Dropdown from "./Dropdown";
 const Filters = ({
   selectedFilter,
   setSelectedFilter,
+  isDarkMode,
 }: {
   selectedFilter: string;
   setSelectedFilter: (filter: string) => void;
+  isDarkMode: boolean;
 }) => {
   return (
     <div className="flex items-center justify-between px-20 pt-12">
@@ -26,7 +28,9 @@ const Filters = ({
           />
         </svg>
         <input
-          className="py-[18px] pl-[74px] pr-[18px] bg-white shadow-[0_2px_9px_0_rgba(0,0,0,0.06)] w-[480px] rounded-[5px]"
+          className={`py-[18px] pl-[74px] pr-[18px] ${
+            isDarkMode ? "bg-dark text-white" : "bg-white text-black"
+          } shadow-[0_2px_9px_0_rgba(0,0,0,0.06)] w-[480px] rounded-[5px]`}
           id="search-country"
           name="search-country"
           type="text"
@@ -37,6 +41,7 @@ const Filters = ({
         <Dropdown
           selectedFilter={selectedFilter}
           setSelectedFilter={setSelectedFilter}
+          isDarkMode={isDarkMode}
         />
       </div>
     </div>

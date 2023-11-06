@@ -13,6 +13,8 @@ export default {
         black: "#111517",
         gray: "#848484",
         light: "#FAFAFA",
+        veryDark: "#202C36",
+        dark: "#2B3844",
       },
     },
   },

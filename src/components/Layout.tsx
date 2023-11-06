@@ -1,10 +1,16 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 
-const Layout = () => {
+const Layout = ({
+  isDarkMode,
+  toggleMode,
+}: {
+  isDarkMode: boolean;
+  toggleMode: () => void;
+}) => {
   return (
     <>
-      <Navbar />
+      <Navbar isDarkMode={isDarkMode} toggleMode={toggleMode} />
       <div>
         <Outlet />
       </div>
