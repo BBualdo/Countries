@@ -24,12 +24,13 @@ const CountryDetails = ({
     (languageCode) => country.languages[languageCode]
   );
 
-  const neighbours = country.borders.map((neighbour: string) =>
-    data.find((country: { [key: string]: any }) => country.cca3 === neighbour)
-  );
+  let neighboursButtons;
 
-  const neighboursButtons = neighbours.map(
-    (neighbour: { [key: string]: any }) => (
+  if (country.borders) {
+    const neighbours = country.borders.map((neighbour: string) =>
+      data.find((country: { [key: string]: any }) => country.cca3 === neighbour)
+    );
+    neighboursButtons = neighbours.map((neighbour: { [key: string]: any }) => (
       <Link
         key={uuidv4()}
         className={`${
@@ -39,8 +40,8 @@ const CountryDetails = ({
       >
         {neighbour.name.common}
       </Link>
-    )
-  );
+    ));
+  }
 
   return (
     <section className="px-20 py-12">
@@ -112,7 +113,7 @@ const CountryDetails = ({
           <div className="flex items-center gap-4 mt-16">
             <p className="font-bold">Border Countries:</p>
             <div className="flex items-center gap-4 flex-wrap">
-              {neighboursButtons}
+              {neighboursButtons || "This country has no neighbours :("}
             </div>
           </div>
         </div>
