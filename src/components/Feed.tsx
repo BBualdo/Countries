@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import Filters from "./Filters";
 
 const Feed = () => {
   const { data, isLoading, error } = useQuery({
@@ -14,11 +15,13 @@ const Feed = () => {
 
   let countries = [];
 
+  console.log(data);
+
   if (data) {
     countries = data.map((country: { [key: string]: any }) => {
       return (
         <Link
-          to="/:id"
+          to={`/${country.cca3}`}
           key={uuidv4()}
           className="bg-white cursor-pointer shadow-[0_0_7px_2px_rgba(0,0,0,0.06)]"
         >
@@ -56,9 +59,12 @@ const Feed = () => {
       {isLoading ? (
         <section className="px-20 py-12">Loading...</section>
       ) : (
-        <section className="px-20 py-12 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-[72px] gap-y-[72px]">
-          {countries}
-        </section>
+        <>
+          <Filters />
+          <section className="px-20 py-12 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-[72px] gap-y-[72px]">
+            {countries}
+          </section>
+        </>
       )}
     </>
   );
